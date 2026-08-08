@@ -272,21 +272,47 @@ export default function ClassifyPage() {
                     style={{ width: "80px" }}
                   />
                 </div>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span style={{ fontSize: "0.88rem", color: "var(--text-secondary)" }}>Max Depth (0=unlimited):</span>
+                  <input
+                    type="number"
+                    min="0"
+                    placeholder="0"
+                    value={maxDepth}
+                    onChange={(e) => setMaxDepth(e.target.value)}
+                    className={styles.numberInput}
+                    style={{ width: "80px" }}
+                  />
+                </div>
               </>
             )}
 
             {algorithm === "ID3" && (
-              <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                <span style={{ fontSize: "0.88rem", color: "var(--text-secondary)" }}>Min Instances per Leaf:</span>
-                <input
-                  type="number"
-                  min="1"
-                  value={minInstances}
-                  onChange={(e) => setMinInstances(parseInt(e.target.value) || 1)}
-                  className={styles.numberInput}
-                  style={{ width: "80px" }}
-                />
-              </div>
+              <>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span style={{ fontSize: "0.88rem", color: "var(--text-secondary)" }}>Min Instances per Leaf:</span>
+                  <input
+                    type="number"
+                    min="1"
+                    value={minInstances}
+                    onChange={(e) => setMinInstances(parseInt(e.target.value) || 1)}
+                    className={styles.numberInput}
+                    style={{ width: "80px" }}
+                  />
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <span style={{ fontSize: "0.88rem", color: "var(--text-secondary)" }}>Max Depth (0=unlimited):</span>
+                  <input
+                    type="number"
+                    min="0"
+                    placeholder="0"
+                    value={maxDepth}
+                    onChange={(e) => setMaxDepth(e.target.value)}
+                    className={styles.numberInput}
+                    style={{ width: "80px" }}
+                  />
+                </div>
+              </>
             )}
 
             {algorithm === "KNN" && (
