@@ -3,7 +3,6 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
 from app.api.v1.router import api_router
-from app.api.v1.endpoints import dataset, classify, compare, export
 from app.middleware import RateLimitMiddleware, SecurityHeadersMiddleware
 from fastapi.staticfiles import StaticFiles
 
@@ -29,12 +28,8 @@ app.add_middleware(
 app.add_middleware(SecurityHeadersMiddleware)
 app.add_middleware(RateLimitMiddleware)
 
-# Register API routers
+# Register API routers — all routes live under /api/v1 prefix via api_router
 app.include_router(api_router, prefix=settings.API_V1_STR)
-app.include_router(dataset.router)
-app.include_router(classify.router)
-app.include_router(compare.router, prefix="/compare")
-app.include_router(export.router, prefix="/export")
 
 # Serve generated plots statically – only mount if the directory exists (safe for ephemeral cloud filesystems)
 if settings.PLOT_DIR.exists():

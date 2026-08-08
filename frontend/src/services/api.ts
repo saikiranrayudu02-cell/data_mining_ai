@@ -13,23 +13,35 @@ const API_BASE_URL = "/api/v1";
 
 class ApiService {
   /**
-   * Helper to handle response status and JSON conversions
+   * Helper to handle response status and JSON conversions.
+   * Throws an error that includes the HTTP status code, endpoint, and backend
+   * error detail so users see a meaningful message instead of "API Request failed".
    */
   private async request<T>(path: string, options: RequestInit): Promise<T> {
     const url = `${API_BASE_URL}${path}`;
-    const response = await fetch(url, options);
-    
-    if (!response.ok) {
-      let errorDetail = "API Request failed";
-      try {
-        const errorJson = await response.json();
-        errorDetail = errorJson.detail || errorDetail;
-      } catch {
-        // Fallback if not JSON
-      }
-      throw new Error(errorDetail);
+    let response: Response;
+
+    try {
+      response = await fetch(url, options);
+    } catch (networkErr) {
+      // Network-level failure (no connection, CORS preflight block, DNS failure, etc.)
+      throw new Error(
+        `Network error reaching ${url}: ${networkErr instanceof Error ? networkErr.message : String(networkErr)}`
+      );
     }
-    
+
+    if (!response.ok) {
+      let detail = `HTTP ${response.status} ${response.statusText}`;
+      try {
+        const body = await response.json();
+        if (body?.detail) detail = `[${response.status}] ${body.detail}`;
+        else detail = `[${response.status}] ${JSON.stringify(body)}`;
+      } catch {
+        // Response body wasn't JSON – use the status text
+      }
+      throw new Error(`${detail} (endpoint: ${url})`);
+    }
+
     return response.json() as Promise<T>;
   }
 
