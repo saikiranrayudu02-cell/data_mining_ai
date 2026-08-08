@@ -48,3 +48,37 @@ button {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted);
 }
+
+/* ----------------------------------------------------
+   Responsive Base Typography & Utilities
+---------------------------------------------------- */
+
+@media (max-width: 768px) {
+  html, body {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  html, body {
+    font-size: 14px;
+  }
+}
+
+/* Prevent text overflow in containers */
+h1, h2, h3, h4, h5, h6, p, span, div {
+  overflow-wrap: anywhere;
+}
+
+/* Reusable responsive scroll wrapper for tables/charts */
+.responsive-scroll-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  padding-bottom: 0.5rem; /* space for scrollbar */
+}
+
+/* Ensure inputs are fully sized on mobile but bounded */
+input, select, textarea {
+  max-width: 100%;
+}

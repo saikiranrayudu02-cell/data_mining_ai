@@ -90,3 +90,28 @@
   color: var(--accent-secondary);
   transform: translateX(4px);
 }
+
+/* Responsive Dashboard */
+@media (max-width: 768px) {
+  .hero {
+    padding: 2rem 1.5rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .grid {
+    grid-template-columns: 1fr; /* Force single column on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.75rem;
+  }
+}

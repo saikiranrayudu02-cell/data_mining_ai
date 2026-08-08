@@ -9,7 +9,29 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  height: 70px;
+  transition: var(--transition-fast);
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hamburgerBtn {
+  display: none; /* hidden on desktop */
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.hamburgerBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .logoSection {
@@ -77,4 +99,40 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* Responsive Navbar */
+@media (max-width: 1024px) {
+  .hamburgerBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.75rem 1rem;
+  }
+  
+  .logoText {
+    font-size: 1.1rem;
+  }
+  
+  .logoIcon {
+    font-size: 1.4rem;
+  }
+  
+  .activeDatasetBadge {
+    display: none; /* hide dataset name on very small screens to save space */
+  }
+  
+  .statusIndicator {
+    font-size: 0; /* hide the text "API Connected" */
+    padding: 0.4rem;
+  }
+  
+  .statusIndicator .dot {
+    margin-right: 0;
+  }
 }

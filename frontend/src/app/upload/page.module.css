@@ -218,3 +218,37 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* Responsive Upload Page */
+@media (max-width: 768px) {
+  .pageTitle {
+    font-size: 1.75rem;
+  }
+  
+  .dropzone {
+    padding: 2.5rem 1rem;
+  }
+  
+  .dropzoneIcon {
+    font-size: 2.5rem;
+  }
+  
+  .metadataGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageTitle {
+    font-size: 1.5rem;
+  }
+  
+  .metadataGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .uploadGrid {
+    gap: 1.5rem;
+  }
+}

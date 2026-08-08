@@ -375,6 +375,46 @@ export default function RulesPage() {
           color: var(--text-secondary);
           text-transform: uppercase;
         }
+
+        /* Responsive Rules Page */
+        @media (max-width: 768px) {
+          .page-title {
+            font-size: 1.75rem;
+          }
+          
+          .card {
+            padding: 1.25rem 1rem;
+          }
+          
+          .control-select {
+            width: 100%;
+          }
+          
+          .btn {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+          }
+          
+          .export-actions {
+            width: 100%;
+            flex-direction: column;
+          }
+          
+          .export-actions .btn {
+            width: 100%;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .page-title {
+            font-size: 1.5rem;
+          }
+          
+          .canvas-placeholder {
+            padding: 1rem;
+          }
+        }
       `}</style>
     </div>
   );

@@ -330,3 +330,39 @@
   border-radius: 10px;
   overflow: hidden;
 }
+
+/* Responsive Classify Page */
+@media (max-width: 768px) {
+  .pageTitle {
+    font-size: 1.75rem;
+  }
+  
+  .settingsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .startBtn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .tabsBar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .paramCard {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageTitle {
+    font-size: 1.5rem;
+  }
+  
+  .algoSelector {
+    grid-template-columns: 1fr;
+  }
+}

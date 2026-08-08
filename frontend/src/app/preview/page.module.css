@@ -121,3 +121,34 @@
   color: var(--accent-secondary);
   font-weight: 600;
 }
+
+/* Responsive Preview Page */
+@media (max-width: 768px) {
+  .pageTitle {
+    font-size: 1.75rem;
+  }
+  
+  .tableCard {
+    padding: 1.5rem 1rem;
+  }
+  
+  .tableTitle {
+    font-size: 1.15rem;
+  }
+  
+  .tabsContainer {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageTitle {
+    font-size: 1.5rem;
+  }
+  
+  .tableCard {
+    padding: 1rem;
+  }
+}

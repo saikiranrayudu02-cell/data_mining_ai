@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar/Navbar";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import { DatasetProvider } from "@/context/DatasetContext";
 import { ToastProvider } from "@/context/ToastContext";
+import { SidebarProvider } from "@/context/SidebarContext";
 import "../styles/globals.css";
 
 export const metadata: Metadata = {
@@ -20,15 +21,17 @@ export default function RootLayout({
       <body>
         <DatasetProvider>
           <ToastProvider>
-            <div className="app-layout">
-              <Navbar />
-              <div className="app-body">
-                <Sidebar />
-                <main className="app-content">
-                  {children}
-                </main>
+            <SidebarProvider>
+              <div className="app-layout">
+                <Navbar />
+                <div className="app-body">
+                  <Sidebar />
+                  <main className="app-content">
+                    {children}
+                  </main>
+                </div>
               </div>
-            </div>
+            </SidebarProvider>
           </ToastProvider>
         </DatasetProvider>
 
@@ -56,6 +59,19 @@ export default function RootLayout({
             max-width: 1600px;
             margin: 0 auto;
             width: 100%;
+          }
+          
+          /* Responsive Layout */
+          @media (max-width: 1024px) {
+            .app-content {
+              padding: 1.5rem;
+            }
+          }
+          
+          @media (max-width: 768px) {
+            .app-content {
+              padding: 1rem;
+            }
           }
         `}</style>
       </body>

@@ -4,11 +4,13 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useDataset } from "@/context/DatasetContext";
+import { useSidebar } from "@/context/SidebarContext";
 import styles from "./Sidebar.module.css";
 
 export default function Sidebar() {
   const pathname = usePathname();
   const { activeDatasetId } = useDataset();
+  const { isSidebarOpen, setSidebarOpen } = useSidebar();
 
   const navItems = [
     { name: "Dashboard", path: "/", icon: "🏠", requireDataset: false },
@@ -18,9 +20,24 @@ export default function Sidebar() {
     { name: "Compare Models", path: "/compare", icon: "⚔️", requireDataset: true },
   ];
 
+  const handleNavClick = () => {
+    if (window.innerWidth <= 1024) {
+      setSidebarOpen(false);
+    }
+  };
+
   return (
-    <aside className={styles.sidebar}>
-      <nav className={styles.navSection}>
+    <>
+      {/* Mobile overlay */}
+      {isSidebarOpen && (
+        <div 
+          className={styles.sidebarOverlay} 
+          onClick={() => setSidebarOpen(false)} 
+          aria-label="Close sidebar"
+        />
+      )}
+      <aside className={`${styles.sidebar} ${isSidebarOpen ? styles.open : ""}`}>
+        <nav className={styles.navSection}>
         {navItems.map((item) => {
           const isActive = pathname === item.path;
           const isDisabled = item.requireDataset && !activeDatasetId;
@@ -43,6 +60,7 @@ export default function Sidebar() {
             <Link
               key={item.name}
               href={item.path}
+              onClick={handleNavClick}
               className={`${styles.navLink} ${isActive ? styles.activeLink : ""}`}
             >
               <span className={styles.navIcon}>{item.icon}</span>
@@ -57,5 +75,6 @@ export default function Sidebar() {
         <p>FastAPI & Next.js Engine</p>
       </div>
     </aside>
+    </>
   );
 }
