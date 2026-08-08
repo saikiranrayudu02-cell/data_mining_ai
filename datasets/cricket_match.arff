@@ -1,0 +1,25 @@
+@relation cricket_match
+
+@attribute weather {sunny,cloudy,rainy}
+@attribute pitch {dry,green,wet}
+@attribute toss {win,lose}
+@attribute batting {first,second}
+@attribute opponent {strong,average,weak}
+@attribute result {win,lose}
+
+@data
+sunny,dry,win,first,weak,win
+sunny,dry,lose,second,strong,lose
+cloudy,green,win,first,average,win
+rainy,wet,lose,second,strong,lose
+cloudy,green,lose,first,weak,win
+sunny,dry,win,second,average,win
+rainy,wet,win,first,strong,lose
+cloudy,dry,lose,second,weak,win
+sunny,green,win,first,strong,win
+rainy,wet,lose,first,average,lose
+cloudy,green,win,second,weak,win
+sunny,dry,lose,first,average,lose
+rainy,wet,win,second,weak,win
+cloudy,dry,win,first,strong,win
+sunny,green,lose,second,average,lose
