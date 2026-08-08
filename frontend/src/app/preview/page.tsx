@@ -110,7 +110,7 @@ export default function PreviewPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {(activeTab === "raw" ? preview.raw_data : preview.processed_data).map((row: Record<string, any>, rIdx: number) => (
+                  {(activeTab === "raw" ? preview.raw_data : preview.processed_data).map((row: Record<string, unknown>, rIdx: number) => (
                     <tr key={rIdx}>
                       <td><strong>{rIdx + 1}</strong></td>
                       {preview.columns.map((col: string) => {

@@ -158,6 +158,6 @@ export interface ExportResponse {
 
 export interface DatasetPreviewResponse {
   columns: string[];
-  raw_data: Record<string, any>[];
-  processed_data: Record<string, any>[];
+  raw_data: Record<string, unknown>[];
+  processed_data: Record<string, unknown>[];
 }
