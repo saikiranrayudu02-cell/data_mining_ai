@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
@@ -12,9 +13,10 @@ app = FastAPI(
     version="1.0.0",
     docs_url="/docs",
     redoc_url="/redoc",
+    openapi_url="/openapi.json",
 )
 
-# Configure CORS
+# Configure CORS – allow all origins in production (tighten per-env as needed)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.ALLOWED_ORIGINS,
@@ -34,13 +36,15 @@ app.include_router(classify.router)
 app.include_router(compare.router, prefix="/compare")
 app.include_router(export.router, prefix="/export")
 
-# Serve generated plots statically
-app.mount("/plots", StaticFiles(directory=str(settings.PLOT_DIR)), name="plots")
+# Serve generated plots statically – only mount if the directory exists (safe for ephemeral cloud filesystems)
+if settings.PLOT_DIR.exists():
+    app.mount("/plots", StaticFiles(directory=str(settings.PLOT_DIR)), name="plots")
+
 
 @app.get("/")
-def read_root():
+def health_check():
+    """Health check endpoint – used by Render uptime checks and CI."""
     return {
-        "status": "healthy",
-        "service": settings.PROJECT_NAME,
-        "docs": "/docs"
+        "status": "ok",
+        "service": "DataMine AI Classifier",
     }
